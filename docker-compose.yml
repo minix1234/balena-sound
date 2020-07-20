@@ -55,6 +55,9 @@ services:
     restart: on-failure 
     network_mode: host 
     privileged: true
+    ports:
+      - "5000:5000/udp"
+      - "5000:5000/tcp"
     volumes:
       - snapcast:/var/cache/snapcast
   upnp:
