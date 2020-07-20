@@ -1,4 +1,15 @@
 - commits:
+    - subject: Add snapcast control
+      hash: abf01efc28e75f8b49ed8601e2429c7ab66b27a7
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Alex
+      nested: []
+  version: 2.5.0
+  date: 2020-07-20T18:15:01.544Z
+- commits:
     - subject: 'multi-room: disable feature for raspberrypi2 fam'
       hash: 6eebb0b756588d5c260d28ade9851c85e6c219e3
       body: ''
