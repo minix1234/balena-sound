@@ -64,9 +64,12 @@ RUN 	make -j $(nproc)
 RUN 	make install
 
 # Shairport Sync Runtime System:
-FROM 	alpine
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian:buster
 
-RUN 	apk add \
+RUN \
+    apt-get update \
+    \
+    && apt-get install -y --no-install-recommends \
               alsa-lib \
               dbus \
               popt \
@@ -98,10 +101,10 @@ RUN 	adduser -D shairport-sync -G shairport-sync
 # Add the shairport-sync user to the pre-existing audio group, which has ID 29, for access to the ALSA stuff
 RUN 	addgroup -g 29 docker_audio && addgroup shairport-sync docker_audio
 
-COPY 	start.sh /
+#COPY 	start.sh /
 
-ENTRYPOINT [ "/start.sh" ]
+#ENTRYPOINT [ "/start.sh" ]
 
-#COPY start.sh /usr/src/
+COPY start.sh /usr/src/
 
-#CMD [ "/bin/bash", "/usr/src/start.sh" ]
+CMD [ "/bin/bash", "/usr/src/start.sh" ]
