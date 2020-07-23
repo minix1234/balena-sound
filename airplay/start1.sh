@@ -22,5 +22,14 @@ if [[ -z $DISABLE_MULTI_ROOM ]] && [[ $BALENA_DEVICE_TYPE != "raspberry-pi" || $
   SHAIRPORT_BACKEND="-o pipe -- /var/cache/snapcast/snapfifo"
 fi
 
+
+rm -rf /var/run/dbus.pid
+
+dbus-uuidgen --ensure
+dbus-daemon --system
+
+avahi-daemon --daemonize --no-chroot
+
 # Start AirPlay
-exec shairport-sync -a "$DEVICE_NAME" $SHAIRPORT_BACKEND | printf "Device is discoverable as \"%s\"\n" "$DEVICE_NAME"
+#exec shairport-sync -a "$DEVICE_NAME" $SHAIRPORT_BACKEND | printf "Device is discoverable as \"%s\"\n" "$DEVICE_NAME"
+su-exec shairport-sync shairport-sync -a "$DEVICE_NAME" $SHAIRPORT_BACKEND | printf "Device is discoverable as \"%s\"\n" "$DEVICE_NAME"
