@@ -26,7 +26,7 @@ RUN apk -U add \
 FROM builder-base AS builder-alac
 
 RUN 	git clone https://github.com/mikebrady/alac
-WORKDIR alac
+WORKDIR /alac
 RUN 	autoreconf -fi
 RUN 	./configure
 RUN 	make
@@ -43,7 +43,7 @@ COPY 	--from=builder-alac /usr/local/lib/pkgconfig/alac.pc /usr/local/lib/pkgcon
 COPY 	--from=builder-alac /usr/local/include /usr/local/include
 
 RUN 	git clone https://github.com/mikebrady/shairport-sync
-WORKDIR shairport-sync
+WORKDIR /shairport-sync
 RUN 	git checkout "$SHAIRPORT_SYNC_BRANCH"
 RUN 	autoreconf -fi
 RUN 	./configure \
