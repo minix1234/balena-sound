@@ -32,4 +32,4 @@ avahi-daemon --daemonize --no-chroot
 
 # Start AirPlay
 #exec shairport-sync -a "$DEVICE_NAME" $SHAIRPORT_BACKEND | printf "Device is discoverable as \"%s\"\n" "$DEVICE_NAME"
-su-exec shairport-sync shairport-sync -a "$DEVICE_NAME" $SHAIRPORT_BACKEND | printf "Device is discoverable as \"%s\"\n" "$DEVICE_NAME"
+su-exec shairport-sync shairport-sync $SHAIRPORT_OPTIONS -a "$DEVICE_NAME" $SHAIRPORT_BACKEND | printf "Device is discoverable as \"%s\"\n" "$DEVICE_NAME"
