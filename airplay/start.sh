@@ -23,7 +23,7 @@ if [[ -z $DISABLE_MULTI_ROOM ]] && [[ $BALENA_DEVICE_TYPE != "raspberry-pi" || $
 fi
 
 # import configuration from CURL if needed
-if [[ -z "$CURL_URL" ]]; then
+if [[ ! -z "$CURL_URL" ]]; then
   curl $CURL_URL > /etc/shairport-sync.conf
 fi
 
