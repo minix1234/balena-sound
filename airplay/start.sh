@@ -22,6 +22,10 @@ if [[ -z $DISABLE_MULTI_ROOM ]] && [[ $BALENA_DEVICE_TYPE != "raspberry-pi" || $
   SHAIRPORT_BACKEND="-o pipe -- /var/cache/snapcast/snapfifo"
 fi
 
+# import configuration from CURL if needed
+if [[ -z "$CURL_URL" ]]; then
+  curl $CURL_URL > /etc/shairport-sync.conf
+fi
 
 rm -rf /var/run/dbus.pid
 

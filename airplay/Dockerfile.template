@@ -103,7 +103,7 @@ RUN 	addgroup -g 29 docker_audio && addgroup shairport-sync docker_audio
 
 #ENTRYPOINT [ "/start.sh" ]
 
-COPY shairport-sync.conf /etc/
+#COPY shairport-sync.conf /etc/
 COPY start.sh /usr/src/
 
 CMD [ "/bin/bash", "/usr/src/start.sh" ]
