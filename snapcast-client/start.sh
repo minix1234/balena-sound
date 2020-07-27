@@ -2,6 +2,20 @@
 
 # Start snapclient if multi room is enabled
 if [[ -z $DISABLE_MULTI_ROOM ]]; then
+
+  
+
+ # Add snapclient_options are defined just execute as below
+  if [[ -n $SNAPCLIENT_OPTIONS ]]; then
+    mkdir /var/run/dbus/
+    rm -rf /var/run/dbus.pid 
+    dbus-uuidgen --ensure
+    dbus-daemon --system
+    avahi-daemon --daemonize --no-chroot
+    snapclient $SNAPCLIENT_OPTIONS
+
+  fi
+
   # Wait for fleet-supervisor to start up
   # We need this because fleet-supervisor depends on resin_supervisor, which has no support for depends_on
   while ! curl -s "http://localhost:3000"; do sleep 1; done

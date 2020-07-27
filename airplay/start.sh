@@ -27,7 +27,10 @@ if [[ ! -z "$CURL_URL" ]]; then
   curl $CURL_URL > /etc/shairport-sync.conf
 fi
 
-rm -rf /var/run/dbus.pid
+#Pause this script execution if needed for troubleshooting
+while [ $PAUSE ]; do sleep 1; done
+
+rm -rf /var/run/dbus.pid #removed as it appeared to be causing issues on the docker...
 
 dbus-uuidgen --ensure
 dbus-daemon --system
